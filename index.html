@@ -4,15 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Loaders</title>
+    <title>CircularProgress.js examples</title>
     <link rel="preload" href="src/circular-progress.min.css" as="style">
     <link rel="stylesheet" href="src/circular-progress.min.css">
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/agate.min.css">
+    <style>
+        html { background: #272727; }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            padding: 100px 0;
+        }
+        div.circularPercent {
+            margin-right: 10px;
+            display: inline-block;
+        }
+        div.circularPercent * {
+            display: inline-block;
+        }
+        .noLbl::after {
+            content: "Progress without label";
+            position: absolute;
+            font-size: 17px;
+            left: 0;
+            right: 0;
+            text-align:center;
+            bottom: -30px;
+        }
+        .lbl::after {
+            content: "Progress with label";
+            position: absolute;
+            font-size: 17px;
+            left: 0;
+            right: 0;
+            text-align:center;
+            bottom: -30px;
+        }
+        main {
+            margin-top: 40px;
+            max-width: 70vw;
+            background: transparent;
+            position: relative;
+        }
+        .btn-run {
+            display: inline-block;
+            box-sizing: border-box;
+            background-color: #27ae60;
+            padding: 10px 20px;
+            cursor:pointer;
+            border-radius: 5px;
+        }
+        code {
+            display: inline-block;
+            font-size: 1.4em;
+            background: #222;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        pre {
+            margin: 0;
+            padding: 0;
+            float: left;
+        }
+        a {
+            color: #16a085;
+        }
+    </style>
 </head>
 <body>
-    <div class="circularPercent" data-percent="100"></div>
-    <div class="circularPercent" data-percent="60" data-text="HTML"></div>
-    <div class="circularPercent" data-percent="40" data-text="CSS"></div>
-    <div class="circularPercent" data-percent="100" data-text="JavaScript"></div>
+    <main>
+        <div class="circularPercent noLbl" id=1 data-percent="100"></div>
+        <div class="circularPercent lbl" id=2 data-percent="60" data-text="Label"></div>
+        <br><br>
+        <h1>Functions</h1>
+        <pre><code class="javascript">element.setPercent(value);</code></pre><br><br>
+        <span>This function will set the circular percent to a value.</span><br>
+        <pre><code class="javascript">document.getElementById('1').setPercent(70);</code></pre></pre><span class="btn-run" onclick="document.getElementById('1').setPercent(70);">Run</span>
+        <br><br>
+        <pre><code class="javascript">element.setLabel(newLabel);</code></pre><br><br>
+        <span>This function will set the new label text, and create a label if there isn't one.</span><br>
+        <pre><code class="javascript">document.getElementById('1').setLabel('New Label');</code></pre><span class="btn-run" onclick="document.getElementById('1').setLabel('New Label');">Run</span>
+        <br><br><br>
+        <h1>Getting started</h1>
+        <span>To use the code, you have to include it in your HTML document.</span><br>
+        <pre><code class="html">&lt;link rel="stylesheet" href="https://github.pato05mc.tk/circular-progress.js/src/circular-progress.min.js"&gt;</code></pre><br><br>
+        <span>Alternatively, you can <a href="https://github.com/Pato05/circular-progress.js/archive/master.zip">download it from the repository.</a></span>
+
+    </main>
     <script src="src/circular-progress.min.js" defer></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" defer></script>
+    <script>window.addEventListener("load", function() {
+        hljs.initHighlighting();
+    });</script>
 </body>
 </html>
