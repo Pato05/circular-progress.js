@@ -55,13 +55,14 @@
                             return false;
                         }
                     }
-                    el.setLabel = function(text) {
+                    el.setLabel = function(text, color = "#2ecc71") {
                         if(text) {
                             var elem = this.querySelector("svg > text");
                             if(!elem) {
                                 elem = document.createElementNS("http://www.w3.org/2000/svg", "text");
                                 this.querySelector("svg").appendChild(elem);
                             }
+                            elem.style.fill = color;
                             elem.innerHTML = text;
                             var posInfo = elem.getBoundingClientRect();
                             elem.setAttribute("x", (200 / 2) - (posInfo.width / 2));
