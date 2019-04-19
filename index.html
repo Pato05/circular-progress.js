@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CircularProgress.js examples</title>
     <link rel="preload" href="src/circular-progress.min.css" as="style">
@@ -19,11 +19,12 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             padding: 100px 0;
         }
-        div.circularPercent {
+        div.circularProgress {
             margin-right: 10px;
+            margin-bottom: 30px;
             display: inline-block;
         }
-        div.circularPercent * {
+        div.circularProgress * {
             display: inline-block;
         }
         .noLbl::after {
@@ -67,9 +68,13 @@
             margin-right: 10px;
         }
         pre {
+            overflow-x: auto;
+            width: auto;
+            max-width: 100%;
             margin: 0;
             padding: 0;
             float: left;
+            font-size: initial;
         }
         a {
             color: #16a085;
@@ -78,22 +83,66 @@
 </head>
 <body>
     <main>
-        <div class="circularPercent noLbl" id=1 data-percent="100"></div>
-        <div class="circularPercent lbl" id=2 data-percent="60" data-text="Label"></div>
+        <div class="circularProgress noLbl" data-percent="70"></div>
+        <div class="circularProgress lbl" data-percent="60" data-text="Label"></div>
         <br><br>
+        <h1>Attributes</h1>
+        <table style="width:100%; text-align: left;">
+            <tr>
+                <th>Attribute</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>data-percent (obligatory)</td>
+                <td>Percent of the circular bar</td>
+            </tr>
+            <tr>
+                <td>data-stroke</td>
+                <td>Border color of the circular bar (default: #2ecc71)</td>
+            </tr>
+            <tr>
+                <td>data-stroke-width</td>
+                <td>Border width of the circular bar (default: 10)</td>
+            </tr>
+            <tr>
+                <td>data-text</td>
+                <td>Text of the inner label (default: none)</td>
+            </tr>
+            <tr>
+                <td>data-text-color</td>
+                <td>Color of the label text (default: #2ecc71)</td>
+            </tr>
+            <tr>
+                <td>data-width</td>
+                <td>Width of the circular bar in pixels (default: 200)</td>
+            </tr>
+            <tr>
+                <td>data-height</td>
+                <td>Height of the circular bar in pixels (default: 200)</td>
+            </tr>
+        </table>
         <h1>Functions</h1>
+        <div class="circularProgress" data-percent="50" id="testProgress" data-text="Target of tests"></div><br>
         <pre><code class="javascript">element.setPercent(value);</code></pre><br><br>
         <span>This function will set the circular percent to a value.</span><br>
-        <pre><code class="javascript">document.getElementById('1').setPercent(70);</code></pre></pre><span class="btn-run" onclick="document.getElementById('1').setPercent(70);">Run</span>
+        <pre><code class="javascript">document.getElementById('testProgress').setPercent(100);</code></pre></pre><span class="btn-run" onclick="document.getElementById('testProgress').setPercent(100);">Run</span>
         <br><br>
         <pre><code class="javascript">element.setLabel(newLabel);</code></pre><br><br>
         <span>This function will set the new label text, and create a label if there isn't one.</span><br>
-        <pre><code class="javascript">document.getElementById('1').setLabel('New Label');</code></pre><span class="btn-run" onclick="document.getElementById('1').setLabel('New Label');">Run</span>
+        <pre><code class="javascript">document.getElementById('testProgress').setLabel('New Label');</code></pre><span class="btn-run" onclick="document.getElementById('testProgress').setLabel('New Label');">Run</span>
         <br><br><br>
         <h1>Getting started</h1>
         <span>To use the code, you have to include it in your HTML document.</span><br>
-        <pre><code class="html">&lt;link rel="stylesheet" href="https://github.pato05mc.tk/circular-progress.js/src/circular-progress.min.js"&gt;</code></pre><br><br>
-        <span>Alternatively, you can <a href="https://github.com/Pato05/circular-progress.js/archive/master.zip">download it from the repository.</a></span>
+        <pre><code class="html">&lt;link rel="stylesheet" href="https://github.pato05mc.tk/circular-progress.js/src/circular-progress.min.css"&gt;<br>&lt;script src="https://github.pato05mc.tk/circular-progress.js/src/circular-progress.min.js"&gt;&lt;/script&gt;</code></pre><br><br>
+        <span>Alternatively, you can <a href="https://github.com/Pato05/circular-progress.js/archive/master.zip">download it from the repository</a>.</span>
+        <br><br>
+        <span>To put a new circular progress, all you have to do is put a div with a circularProgress class and a data-percent attribute</span>
+        <pre><code class="html">&lt;div class="circularProgress" data-percent="[number between 1 and 100]"&gt;&lt;/div&gt;</code></pre>
+        <br><br><br><span>To create new circularProgress elements, you can run:</span>
+        <pre><code class="javascript">circularProgress.new(divElement, progress, label);</code></pre>
+        <br><br><br><span>Then you have to append the returned element to the body. In this case, you don't have to set the circularProgress class.</span>
+        <div id="newProgTest" style="width:200px;height:200px;background: #333;overflow:hidden;"></div>
+        <pre><code class="javascript">document.getElementById('newProgTest').appendChild(circularProgress.new(document.createElement('div'), 90, 'New Progress Bar'));</code></pre><span class="btn-run" onclick="document.getElementById('newProgTest').appendChild(circularProgress.new(document.createElement('div'), 90, 'New Progress Bar'));">Run</span>
 
     </main>
     <script src="src/circular-progress.min.js" defer></script>
