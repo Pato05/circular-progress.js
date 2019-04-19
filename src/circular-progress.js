@@ -58,6 +58,10 @@
                     el.setLabel = function(text) {
                         if(text) {
                             var elem = this.querySelector("text");
+                            if(!elem) {
+                                elem = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                                this.appendChild(elem);
+                            }
                             elem.innerHTML = text;
                             var posInfo = elem.getBoundingClientRect();
                             elem.setAttribute("x", (200 / 2) - (posInfo.width / 2));
