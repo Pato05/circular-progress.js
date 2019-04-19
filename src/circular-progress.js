@@ -39,7 +39,7 @@
                         text.style.fill = textColor;
                     }
                     el.setPercent = function(percent) {
-                        var circle = this.querySelector("circle");
+                        var circle = this.querySelector("svg > circle");
                         if(!isNaN(percent)) {
                             if(percent > 100) {
                                 console.error(percent + " is greater than 100.");
@@ -57,10 +57,10 @@
                     }
                     el.setLabel = function(text) {
                         if(text) {
-                            var elem = this.querySelector("text");
+                            var elem = this.querySelector("svg > text");
                             if(!elem) {
                                 elem = document.createElementNS("http://www.w3.org/2000/svg", "text");
-                                this.appendChild(elem);
+                                this.querySelector("svg").appendChild(elem);
                             }
                             elem.innerHTML = text;
                             var posInfo = elem.getBoundingClientRect();
