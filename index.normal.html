@@ -5,19 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CircularProgress.js examples</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="preload" as="style"> 
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet"> 
     <link rel="preload" href="src/circular-progress.min.css" as="style">
     <link rel="stylesheet" href="src/circular-progress.min.css">
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/agate.min.css">
     <style>
-        html { background: #272727; }
         body {
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-wrap: wrap;
+            background: #272727;
             color: #fff;
+            min-height: 100vh;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            padding: 100px 0;
         }
         div.circularProgress {
             margin-right: 10px;
@@ -55,10 +58,10 @@
             bottom: -30px;
         }
         main {
-            margin-top: 40px;
             max-width: 70vw;
             background: transparent;
             position: relative;
+            padding: 50px 0 50px 0;
         }
         .btn-run {
             display: inline-block !important;
@@ -93,14 +96,52 @@
             display:none;
         }
         h1:hover a { display:inline; }
+        header {
+            padding: 50px 0 20px 0;
+            min-width: 100%;
+            text-align: center;
+        }
+        h1 {font-family: "Poppins", sans-serif;}
+        header h1 {
+            font-size: 2em;
+        }
+        header > a {
+            display: inline-block;
+            color: #fff;
+            position: relative;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border-radius: 50px;
+            background-color: #2ecc71;
+            padding: 15px 35px;
+            text-decoration: none;
+            font-size: 1em;
+            font-family: "Poppins", sans-serif;
+            font-weight: bolder;
+            text-transform: uppercase;
+            transition: .4s ease;
+        }
+        header > a:hover {
+            background-color: #2bb665;
+        }
+        .examples {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+    <header>
+        <h1 id="title"><a href="#title"># </a>circular-progress.js</h1>
+        <a href="https://github.com/Pato05/circular-progress.js">View on Github</a>
+        <div class="separator"></div>
+    </header>
     <main>
-        <div class="circularProgress noLbl" data-percent="60"></div>
-        <div class="circularProgress lbl" data-percent="40" data-text="Label"></div>
-        <div class="circularProgress noPath" data-percent="70" data-text="No Path" data-show-path="false"></div>
-        <br><br>
+        <div class="examples">
+            <div class="circularProgress noLbl" data-percent="60"></div>
+            <div class="circularProgress lbl" data-percent="40" data-text="Label"></div>
+            <div class="circularProgress noPath" data-percent="70" data-text="No Path" data-show-path="false"></div>
+        </div>
         <h1 id="attributes"><a href="#attributes"># </a>Attributes</h1>
         <table style="width:100%; text-align: left;">
             <tr>
