@@ -1,7 +1,7 @@
 div.circularProgress {
     position: relative;
 }
-div.circularProgress svg, div.circularProgress svg circle {
+div.circularProgress svg, div.circularProgress svg circle.progress {
     position: absolute;
     top: 0;
     left: 0;
@@ -9,9 +9,7 @@ div.circularProgress svg, div.circularProgress svg circle {
     height: 100%;
     fill: transparent;
 }
-div.circularProgress svg circle {
-    stroke: #2ecc71;
-    stroke-width: 10;
+div.circularProgress svg circle.progress {
     stroke-dashoffset: 150.817489624;
     stroke-linecap: round;
     animation: circularProgress-complete 1s ease-out;

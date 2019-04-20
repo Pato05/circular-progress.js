@@ -8,7 +8,7 @@
     <link rel="preload" href="src/circular-progress.min.css" as="style">
     <link rel="stylesheet" href="src/circular-progress.min.css">
     <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/agate.min.css">
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/agate.min.css">
     <style>
         html { background: #272727; }
         body {
@@ -79,6 +79,11 @@
         a {
             color: #16a085;
         }
+        h1 a {
+            text-decoration: none;
+            display:none;
+        }
+        h1:hover a { display:inline; }
     </style>
 </head>
 <body>
@@ -86,7 +91,7 @@
         <div class="circularProgress noLbl" data-percent="70"></div>
         <div class="circularProgress lbl" data-percent="60" data-text="Label"></div>
         <br><br>
-        <h1>Attributes</h1>
+        <h1 id="attributes"><a href="#attributes"># </a>Attributes</h1>
         <table style="width:100%; text-align: left;">
             <tr>
                 <th>Attribute</th>
@@ -113,15 +118,22 @@
                 <td>Color of the label text (default: #2ecc71)</td>
             </tr>
             <tr>
-                <td>data-width</td>
-                <td>Width of the circular bar in pixels (default: 200)</td>
-            </tr>
-            <tr>
-                <td>data-height</td>
-                <td>Height of the circular bar in pixels (default: 200)</td>
+                <td>data-dimensions</td>
+                <td>Dimensions of the circular progress bar.(default: 200px)</td>
             </tr>
         </table>
-        <h1>Functions</h1>
+        <br>
+        <span>You can always set your default by setting the circularProgressDefaults variable before including the file into your document. Example:</span>
+        <pre style="float:none;display:block;"><code class="js">var circularProgressDefaults = {
+<span>    "stroke":"rgb(255,255,255)", // White stroke</span>
+<span>    "strokeWidth":20, // Fatter stroke</span>
+<span>    "text":"default text", // Default text</span>
+<span>    "textColor":"rgb(255,255,255)", // White text color</span>
+<span>    "dimensions": 100, // Tinier circular progress bar</span>
+<span>    "showPath": false, // Don't show progress path</span>
+<span>    "pathStroke": "rgba(255,255,255,0.2)" // Lighter path stroke</span>
+<span>}</span></code></pre>
+        <h1 id="functions"><a href="#functions"># </a>Functions</h1>
         <div class="circularProgress" data-percent="50" id="testProgress" data-text="Target of tests"></div><br>
         <pre><code class="js"><span class="hljs-tag">element</span>.setPercent(<span class="hljs-variable">value</span>);</code></pre><br><br>
         <span>This function will set the circular percent to a value.</span><br>
@@ -131,9 +143,9 @@
         <span>This function will set the new label text, and create a label if there isn't one.</span><br>
         <pre><code class="js">document.getElementById('testProgress').setLabel('New Label');</code></pre><span class="btn-run" onclick="document.getElementById('testProgress').setLabel('New Label');">Run</span>
         <br><br><br>
-        <h1>Getting started</h1>
+        <h1 id="getting-started"><a href="#getting-started"># </a>Getting started</h1>
         <span>To use the code, you have to include it in your HTML document.</span><br>
-        <pre><code class="html">&lt;link rel="stylesheet" href="https://github.pato05mc.tk/circular-progress.js/src/circular-progress.min.css"&gt;<br>&lt;script src="https://github.pato05mc.tk/circular-progress.js/src/circular-progress.min.js"&gt;&lt;/script&gt;</code></pre><br><br>
+        <pre><code class="html">&lt;link rel="stylesheet" href="https://github.pato05mc.tk/circular-progress.js/src/circular-progress.min.css"&gt;<br>&lt;script defer src="https://github.pato05mc.tk/circular-progress.js/src/circular-progress.min.js"&gt;&lt;/script&gt;</code></pre><br><br>
         <span>Alternatively, you can <a href="https://github.com/Pato05/circular-progress.js/archive/master.zip">download it from the repository</a>.</span>
         <br><br>
         <span>To put a new circular progress, all you have to do is put a div with a circularProgress class and a data-percent attribute</span>
@@ -146,9 +158,10 @@
 
     </main>
     <script src="src/circular-progress.min.js" defer></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" defer></script>
     <script>window.addEventListener("load", function() {
         hljs.initHighlighting();
-    });</script>
+    });
+    </script>
 </body>
 </html>
