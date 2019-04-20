@@ -38,11 +38,11 @@ var circularProgress = {
                     box.setAttribute("viewBox", "0 0 200 200");
                     box.setAttribute("width", d);
                     box.setAttribute("height", d);
-                    if(circularProgressDefaults.showPath == true) {
+                    if((el.getAttribute("data-show-path") && ""+el.getAttribute("data-show-path") == "true") || (!el.getAttribute("data-show-path") && ""+circularProgressDefaults.showPath == "true") ) {
                         var path = document.createElementNS("http://www.w3.org/2000/svg", "circle");
                         path.style.strokeDasharray = 603.2699584960938;
                         path.style.strokeWidth = strokeWidth;
-                        path.style.stroke = circularProgressDefaults.pathStroke;
+                        path.style.stroke = el.getAttribute("data-path-stroke") ? el.getAttribute("data-path-stroke") : circularProgressDefaults.pathStroke;
                         path.classList.add("path");
                         path.setAttribute("cx", 100);
                         path.setAttribute("cy", 100);

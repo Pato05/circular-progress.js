@@ -36,6 +36,15 @@
             text-align:center;
             bottom: -30px;
         }
+        .noPath::after {
+            content: "Progress without path";
+            position: absolute;
+            font-size: 17px;
+            left: 0;
+            right: 0;
+            text-align:center;
+            bottom: -30px;
+        }
         .lbl::after {
             content: "Progress with label";
             position: absolute;
@@ -90,6 +99,7 @@
     <main>
         <div class="circularProgress noLbl" data-percent="70"></div>
         <div class="circularProgress lbl" data-percent="60" data-text="Label"></div>
+        <div class="circularProgress noPath" data-percent="60" data-text="No Path" data-show-path="false"></div>
         <br><br>
         <h1 id="attributes"><a href="#attributes"># </a>Attributes</h1>
         <table style="width:100%; text-align: left;">
@@ -121,6 +131,14 @@
                 <td>data-dimensions</td>
                 <td>Dimensions of the circular progress bar.(default: 200px)</td>
             </tr>
+            <tr>
+                <td>data-show-path</td>
+                <td>Show progress path true/false (default: true)</td>
+            </tr>
+            <tr>
+                <td>data-path-stroke</td>
+                <td>CSS color for the path stroke (default: rgb(0,0,0,0.1))</td>
+            </tr>
         </table>
         <br>
         <span>You can always set your default by setting the circularProgressDefaults variable before including the file into your document. Example:</span>
@@ -130,7 +148,7 @@
 <span>    "text":"default text", // Default text</span>
 <span>    "textColor":"rgb(255,255,255)", // White text color</span>
 <span>    "dimensions": 100, // Tinier circular progress bar</span>
-<span>    "showPath": false, // Don't show progress path</span>
+<span>    "showPath": true, // Show progress path</span>
 <span>    "pathStroke": "rgba(255,255,255,0.2)" // Lighter path stroke</span>
 <span>}</span></code></pre>
         <h1 id="functions"><a href="#functions"># </a>Functions</h1>
