@@ -137,11 +137,15 @@
         <div class="circularProgress" data-percent="50" id="testProgress" data-text="Target of tests"></div><br>
         <pre><code class="js"><span class="hljs-tag">element</span>.setPercent(<span class="hljs-variable">value</span>);</code></pre><br><br>
         <span>This function will set the circular percent to a value.</span><br>
-        <pre><code class="js">document.getElementById('testProgress').setPercent(100);</code></pre></pre><span class="btn-run" onclick="document.getElementById('testProgress').setPercent(100);">Run</span>
+        <pre><code class="js">document.getElementById('testProgress').setPercent(100);</code></pre></pre>
+        <span class="btn-run" onclick="document.getElementById('testProgress').setPercent(100);">Run</span>
+        <span class="btn-run" onclick="document.getElementById('testProgress').setPercent(50);">Reset</span>
         <br><br>
         <pre><code class="js"><span class="hljs-tag">element</span>.setLabel(<span class="hljs-variable">newLabel</span>);</code></pre><br><br>
         <span>This function will set the new label text, and create a label if there isn't one.</span><br>
-        <pre><code class="js">document.getElementById('testProgress').setLabel('New Label');</code></pre><span class="btn-run" onclick="document.getElementById('testProgress').setLabel('New Label');">Run</span>
+        <pre><code class="js">document.getElementById('testProgress').setLabel('New Label');</code></pre>
+        <span class="btn-run" onclick="document.getElementById('testProgress').setLabel('New Label');">Run</span>
+        <span class="btn-run" onclick="document.getElementById('testProgress').setLabel('Target of tests');">Reset</span>
         <br><br><br>
         <h1 id="getting-started"><a href="#getting-started"># </a>Getting started</h1>
         <span>To use the code, you have to include it in your HTML document.</span><br>
@@ -154,7 +158,9 @@
         <pre><code class="js"><span class="hljs-tag">circularProgress</span>.new(<span class="hljs-variable">divElement</span>, <span class="hljs-variable">progress</span>, <span class="hljs-variable">label</span>);</code></pre>
         <br><br><br><span>Then you have to append the returned element to the body. In this case, you don't have to set the circularProgress class.</span>
         <div id="newProgTest" style="width:200px;height:200px;background: #333;overflow:hidden;"></div>
-        <pre><code class="js">document.getElementById('newProgTest').appendChild(circularProgress.new(document.createElement('div'), 90, 'New Progress Bar'));</code></pre><span class="btn-run" onclick="document.getElementById('newProgTest').appendChild(circularProgress.new(document.createElement('div'), 90, 'New Progress Bar'));">Run</span>
+        <pre><code class="js">document.getElementById('newProgTest').appendChild(circularProgress.new(document.createElement('div'), 90, 'New Progress Bar'));</code></pre>
+        <span class="btn-run" onclick="document.getElementById('newProgTest').appendChild(circularProgress.new(document.createElement('div'), 90, 'New Progress Bar'));">Run</span>
+        <span class="btn-run" onclick="document.getElementById('newProgTest').innerHTML = '';">Reset</span>
 
     </main>
     <script src="src/circular-progress.min.js" defer></script>
