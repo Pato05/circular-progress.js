@@ -141,7 +141,7 @@
             </tr>
         </table>
         <br>
-        <span>You can always set your default by setting the circularProgressDefaults variable before including the file into your document. Example:</span>
+        <span>You can always set your defaults by setting the circularProgressDefaults variable before including the file into your document or, set it after and these will be used for newly created circular progress bars. Example:</span>
         <pre style="float:none;display:block;"><code class="js">var circularProgressDefaults = {
 <span>    "stroke":"rgb(255,255,255)", // White stroke</span>
 <span>    "strokeWidth":20, // Fatter stroke</span>
@@ -150,7 +150,7 @@
 <span>    "dimensions": "100px", // Tinier circular progress bar</span>
 <span>    "showPath": true, // Show progress path</span>
 <span>    "pathStroke": "rgba(255,255,255,0.2)" // Lighter path stroke</span>
-<span>}</span></code></pre>
+<span>};</span></code></pre>
         <h1 id="functions"><a href="#functions"># </a>Functions</h1>
         <div class="circularProgress" data-percent="20" id="testProgress" data-text="Target of tests"></div><br>
         <pre><code class="js"><span class="hljs-tag">element</span>.setPercent(<span class="hljs-variable">value</span>);</code></pre><br><br>
