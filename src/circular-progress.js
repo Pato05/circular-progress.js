@@ -11,6 +11,7 @@ circularProgressDefaults.calcDashoffset = circularProgressDefaults.calcDashoffse
 circularProgressDefaults.textFont = circularProgressDefaults.textFont||"'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
 circularProgressDefaults.textSize = circularProgressDefaults.textSize||"20px";
 circularProgressDefaults.strokeLinecap = circularProgressDefaults.strokeLinecap||"round";
+circularProgressDefaults.transition = circularProgressDefaults.transition||".7s ease";
 var circularProgress = {
     new: function(el, progress, label = false) {
         if(el.getAttribute("data-percent") || progress) {
@@ -71,6 +72,9 @@ var circularProgress = {
                     box.style.fill = "transparent";
                     el.style.position = "relative";
                     circle.classList.add("progress");
+                    if(el.getAttribute("data-transition") || circularProgressDefaults.transition) {
+                        circle.style.transition = el.getAttribute("data-transition") || circularProgressDefaults.transition;
+                    } else circle.style.transition = ".7s ease";
                     box.setAttribute("viewBox", "0 0 200 200");
                     box.setAttribute("width", d);
                     box.setAttribute("height", d);
