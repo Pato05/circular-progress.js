@@ -1,16 +1,16 @@
 "use strict";
 var circularProgressDefaults = (typeof circularProgressDefaults === "object") ? circularProgressDefaults : {};
-circularProgressDefaults.stroke = (typeof circularProgressDefaults.stroke === "string") ? circularProgressDefaults.stroke:"#2ecc71";
-circularProgressDefaults.strokeWidth = (typeof circularProgressDefaults.strokeWidth !== "undefined") ? circularProgressDefaults.strokeWidth:10;
-circularProgressDefaults.textColor = (typeof circularProgressDefaults.textColor === "string") ? circularProgressDefaults.textColor:"#2ecc71";
-circularProgressDefaults.dimensions = (typeof circularProgressDefaults.dimensions === "string") ? circularProgressDefaults.dimensions:"200px";
-circularProgressDefaults.text = (typeof circularProgressDefaults.text !== "undefined") ? circularProgressDefaults.text:null;
-circularProgressDefaults.pathStroke = (typeof circularProgressDefaults.pathStroke === "string") ? circularProgressDefaults.pathStroke:"rgba(0,0,0,0.1)";
-circularProgressDefaults.showPath = (typeof circularProgressDefaults.showPath !== "undefined") ? circularProgressDefaults.showPath:true;
-circularProgressDefaults.calcDashoffset = (typeof circularProgressDefaults.calcDashoffset === "function") ? circularProgressDefaults.calcDashoffset:function(l) {return l / 4;};
-circularProgressDefaults.textFont = (typeof circularProgressDefaults.textFont === "string") ? circularProgressDefaults.textFont:"'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-circularProgressDefaults.textSize = (typeof circularProgressDefaults.textSize === "string") ? circularProgressDefaults.textSize:"20px";
-circularProgressDefaults.strokeLinecap = (typeof circularProgressDefaults.strokeLinecap === "string") ? circularProgressDefaults.strokeLinecap:"round";
+circularProgressDefaults.stroke = circularProgressDefaults.stroke||"#2ecc71";
+circularProgressDefaults.strokeWidth = circularProgressDefaults.strokeWidth||10;
+circularProgressDefaults.textColor = circularProgressDefaults.textColor||"#2ecc71";
+circularProgressDefaults.dimensions = circularProgressDefaults.dimensions||"200px";
+circularProgressDefaults.text = circularProgressDefaults.text||null;
+circularProgressDefaults.pathStroke = circularProgressDefaults.pathStroke||"rgba(0,0,0,0.1)";
+circularProgressDefaults.showPath = circularProgressDefaults.showPath||true;
+circularProgressDefaults.calcDashoffset = circularProgressDefaults.calcDashoffset||function(l) {return l / 4;};
+circularProgressDefaults.textFont = circularProgressDefaults.textFont||"'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+circularProgressDefaults.textSize = circularProgressDefaults.textSize||"20px";
+circularProgressDefaults.strokeLinecap = circularProgressDefaults.strokeLinecap||"round";
 var circularProgress = {
     new: function(el, progress, label = false) {
         if(el.getAttribute("data-percent") || progress) {
@@ -35,12 +35,29 @@ var circularProgress = {
                     circle.setAttribute("r", 100 - strokeWidth / 2);
                     circle.style.strokeWidth = strokeWidth;
                     var pathLength = circle.getTotalLength();
+                    var head = document.getElementsByTagName("head")[0] || document.head;
+                    if(!head.querySelector("style#circularProgress")) {
+                        var vendorPrefixes = ['-o-', '-moz-', '-webkit-', ''];
+                        var styleElem = document.createElement("style");
+                        var styleString = "";
+                        for(var prefix of vendorPrefixes) {
+                            styleString += "@"+prefix+"keyframes circularPercent-complete { 0% {stroke-dasharray: 0, "+pathLength+"}}";
+                        }
+                        if (styleElem.styleSheet){
+                            styleElem.styleSheet.cssText = styleString;
+                          } else {
+                            styleElem.appendChild(document.createTextNode(styleString));
+                          }
+                          styleElem.id = "circularProgress";
+                          head.appendChild(styleElem);
+                    }
                     var offset = (percent != 0) ? pathLength - (percent * pathLength / 100) : pathLength;
                     circle.style.strokeDasharray = (pathLength - offset) + "," + offset;
                     circle.style.strokeDashoffset = circularProgressDefaults.calcDashoffset(pathLength);
                     circle.style.stroke = stroke;
-                    circle.style.strokeLinecap = text.style.fontSize = el.getAttribute("data-stroke-linecap") ? el.getAttribute("data-stroke-linecap") : circularProgressDefaults.strokeLinecap;
+                    circle.style.strokeLinecap = el.getAttribute("data-stroke-linecap") ? el.getAttribute("data-stroke-linecap") : circularProgressDefaults.strokeLinecap;
                     circle.style.position = "absolute";
+                    circle.style.animation = "circularPercent-complete 1s linear";
                     box.style.position = "absolute";
                     circle.style.top = 0;
                     box.style.top = 0;
@@ -52,6 +69,7 @@ var circularProgress = {
                     box.style.height = "100%";
                     circle.style.fill = "transparent";
                     box.style.fill = "transparent";
+                    el.style.position = "relative";
                     circle.classList.add("progress");
                     box.setAttribute("viewBox", "0 0 200 200");
                     box.setAttribute("width", d);

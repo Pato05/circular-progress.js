@@ -7,8 +7,6 @@
     <title>CircularProgress.js examples</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="preload" as="style"> 
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet"> 
-    <link rel="preload" href="src/circular-progress.min.css" as="style">
-    <link rel="stylesheet" href="src/circular-progress.min.css">
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/agate.min.css">
     <style>
@@ -239,9 +237,7 @@
         <br><br><br>
         <h1 id="getting-started"><a href="#getting-started"># </a>Getting started</h1>
         <span>To use the code, you have to include it in your HTML document.</span><br>
-        <span>Start by putting the Circular Progress CSS into your head tag:</span><br>
-        <pre><code class="html">&lt;link rel="preload" href="https://github.pato05mc.tk/circular-progress.js/src/circular-progress.min.css" as="style"&gt;<br>&lt;link rel="stylesheet" href="https://github.pato05mc.tk/circular-progress.js/src/circular-progress.min.css"&gt;</code></pre><br><br><br>
-        <span>Then the script tag at the end of the body tag:</span><br>
+        <span>Put the script tag at the end of the body tag:</span><br>
         <pre><code class="html">&lt;script defer src="https://github.pato05mc.tk/circular-progress.js/src/circular-progress.min.js"&gt;&lt;/script&gt;</code></pre><br><br>
         <span>Alternatively, you can <a href="https://github.com/Pato05/circular-progress.js/archive/master.zip">download it from the repository</a>.</span>
         <br><br>
@@ -257,7 +253,7 @@
         <span>To set other options in the <pre style="float:none;display:inline-block;font-size:inherit;"><code class="js">circularProgress.new()</code></pre>function, you can set the <a href="#attributes">attributes</a> in the new created div element before calling the function</span>
 
     </main>
-    <script src="src/circular-progress.min.js" defer></script>
+    <script src="src/circular-progress.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" defer></script>
     <script>window.addEventListener("load", function() {
         hljs.initHighlighting();
