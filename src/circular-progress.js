@@ -8,12 +8,14 @@ circularProgressDefaults.text = (typeof circularProgressDefaults.text !== "undef
 circularProgressDefaults.pathStroke = (typeof circularProgressDefaults.pathStroke === "string") ? circularProgressDefaults.pathStroke:"rgba(0,0,0,0.1)";
 circularProgressDefaults.showPath = (typeof circularProgressDefaults.showPath !== "undefined") ? circularProgressDefaults.showPath:true;
 circularProgressDefaults.calcDashoffset = (typeof circularProgressDefaults.calcDashoffset === "function") ? circularProgressDefaults.calcDashoffset:function(l) {return l / 4;};
+circularProgressDefaults.textFont = (typeof circularProgressDefaults.textFont === "string") ? circularProgressDefaults.textFont:"'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+circularProgressDefaults.textSize = (typeof circularProgressDefaults.textSize === "string") ? circularProgressDefaults.textSize:"20px";
+circularProgressDefaults.strokeLinecap = (typeof circularProgressDefaults.strokeLinecap === "string") ? circularProgressDefaults.strokeLinecap:"round";
 var circularProgress = {
     new: function(el, progress, label = false) {
         if(el.getAttribute("data-percent") || progress) {
             if(!isNaN(el.getAttribute("data-percent")) || !isNaN(progress)) {
                 if(el.getAttribute("data-percent") <= 100){
-                    var text = null;
                     var strokeWidth = el.getAttribute("data-stroke-width") ? el.getAttribute("data-stroke-width") : circularProgressDefaults.strokeWidth;
                     var stroke = el.getAttribute("data-stroke") ? el.getAttribute("data-stroke") : circularProgressDefaults.stroke;
                     var textColor = el.getAttribute("data-text-color") ? el.getAttribute("data-text-color") : circularProgressDefaults.textColor;
@@ -37,6 +39,19 @@ var circularProgress = {
                     circle.style.strokeDasharray = (pathLength - offset) + "," + offset;
                     circle.style.strokeDashoffset = circularProgressDefaults.calcDashoffset(pathLength);
                     circle.style.stroke = stroke;
+                    circle.style.strokeLinecap = text.style.fontSize = el.getAttribute("data-stroke-linecap") ? el.getAttribute("data-stroke-linecap") : circularProgressDefaults.strokeLinecap;
+                    circle.style.position = "absolute";
+                    box.style.position = "absolute";
+                    circle.style.top = 0;
+                    box.style.top = 0;
+                    circle.style.left = 0;
+                    box.style.left = 0;
+                    circle.style.width = "100%";
+                    box.style.width = "100%";
+                    circle.style.height = "100%";
+                    box.style.height = "100%";
+                    circle.style.fill = "transparent";
+                    box.style.fill = "transparent";
                     circle.classList.add("progress");
                     box.setAttribute("viewBox", "0 0 200 200");
                     box.setAttribute("width", d);
@@ -54,8 +69,11 @@ var circularProgress = {
                     }
                     box.appendChild(circle);
                     el.appendChild(box);
-                    if(text) {
+                    if(el.getAttribute("data-text") || label || circularProgressDefaults.text) {
+                        var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
                         text.appendChild(document.createTextNode(el.getAttribute("data-text") ? el.getAttribute("data-text") : (label ? label : circularProgressDefaults.text)));
+                        text.style.fontSize = el.getAttribute("data-text-size") ? el.getAttribute("data-text-size") : circularProgressDefaults.textSize;
+                        text.style.fontFamily = el.getAttribute("data-text-font") ? el.getAttribute("data-text-font") : circularProgressDefaults.textFont;
                         box.appendChild(text);
                         text.setAttribute("x", "50%");
                         text.setAttribute("y", "50%");
