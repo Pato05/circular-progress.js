@@ -3,10 +3,11 @@ var circularProgressDefaults = (typeof circularProgressDefaults === "object") ? 
 circularProgressDefaults.stroke = (typeof circularProgressDefaults.stroke === "string") ? circularProgressDefaults.stroke:"#2ecc71";
 circularProgressDefaults.strokeWidth = (typeof circularProgressDefaults.strokeWidth !== "undefined") ? circularProgressDefaults.strokeWidth:10;
 circularProgressDefaults.textColor = (typeof circularProgressDefaults.textColor === "string") ? circularProgressDefaults.textColor:"#2ecc71";
-circularProgressDefaults.dimensions = (typeof circularProgressDefaults.dimensions !== "undefined") ? circularProgressDefaults.dimensions:"200px";
+circularProgressDefaults.dimensions = (typeof circularProgressDefaults.dimensions === "string") ? circularProgressDefaults.dimensions:"200px";
 circularProgressDefaults.text = (typeof circularProgressDefaults.text !== "undefined") ? circularProgressDefaults.text:null;
-circularProgressDefaults.pathStroke = (typeof circularProgressDefaults.pathStroke !== "undefined") ? circularProgressDefaults.pathStroke:"rgba(0,0,0,0.1)";
+circularProgressDefaults.pathStroke = (typeof circularProgressDefaults.pathStroke === "string") ? circularProgressDefaults.pathStroke:"rgba(0,0,0,0.1)";
 circularProgressDefaults.showPath = (typeof circularProgressDefaults.showPath !== "undefined") ? circularProgressDefaults.showPath:true;
+circularProgressDefaults.calcDashoffset = (typeof circularProgressDefaults.calcDashoffset === "function") ? circularProgressDefaults.calcDashoffset:function(l) {return l / 4;};
 var circularProgress = {
     new: function(el, progress, label = false) {
         if(el.getAttribute("data-percent") || progress) {
@@ -30,10 +31,11 @@ var circularProgress = {
                     circle.setAttribute("cx", 100);
                     circle.setAttribute("cy", 100);
                     circle.setAttribute("r", 100 - strokeWidth / 2);
+                    circle.style.strokeWidth = strokeWidth;
                     var pathLength = circle.getTotalLength();
                     var offset = (percent != 0) ? pathLength - (percent * pathLength / 100) : pathLength;
                     circle.style.strokeDasharray = (pathLength - offset) + "," + offset;
-                    circle.style.strokeWidth = strokeWidth;
+                    circle.style.strokeDashoffset = circularProgressDefaults.calcDashoffset(pathLength);
                     circle.style.stroke = stroke;
                     circle.classList.add("progress");
                     box.setAttribute("viewBox", "0 0 200 200");
