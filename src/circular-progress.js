@@ -24,23 +24,24 @@ var circularProgress = {
                     var box = document.createElementNS("http://www.w3.org/2000/svg","svg");
                     var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
                     var percent = progress ? progress : el.getAttribute("data-percent");
-                    var offset = (percent != 0) ? 603.2699584960938 - (percent * 603.2699584960938 / 100) : 603.2699584960938;
                     var d = el.getAttribute("data-dimensions") ? el.getAttribute("data-dimensions") : circularProgressDefaults.dimensions;
                     el.style.width = d;
                     el.style.height = d;
-                    circle.style.strokeDasharray = (603.2699584960938 - offset) + "," + offset;
-                    circle.style.strokeWidth = strokeWidth;
-                    circle.style.stroke = stroke;
                     circle.setAttribute("cx", 100);
                     circle.setAttribute("cy", 100);
                     circle.setAttribute("r", 100 - strokeWidth / 2);
+                    var pathLength = circle.getTotalLength();
+                    var offset = (percent != 0) ? pathLength - (percent * pathLength / 100) : pathLength;
+                    circle.style.strokeDasharray = (pathLength - offset) + "," + offset;
+                    circle.style.strokeWidth = strokeWidth;
+                    circle.style.stroke = stroke;
                     circle.classList.add("progress");
                     box.setAttribute("viewBox", "0 0 200 200");
                     box.setAttribute("width", d);
                     box.setAttribute("height", d);
                     if((el.getAttribute("data-show-path") && ""+el.getAttribute("data-show-path") == "true") || (!el.getAttribute("data-show-path") && ""+circularProgressDefaults.showPath == "true") ) {
                         var path = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                        path.style.strokeDasharray = 603.2699584960938;
+                        path.style.strokeDasharray = pathLength;
                         path.style.strokeWidth = strokeWidth;
                         path.style.stroke = el.getAttribute("data-path-stroke") ? el.getAttribute("data-path-stroke") : circularProgressDefaults.pathStroke;
                         path.classList.add("path");
@@ -68,8 +69,8 @@ var circularProgress = {
                                 return false;
                             } else {
                                 this.setAttribute("data-percent", percent);
-                                var offset = (percent != 0) ? 603.2699584960938 - (percent * 603.2699584960938 / 100) : 603.2699584960938;
-                                circle.style.strokeDasharray = (603.2699584960938 - offset) + "," + offset;
+                                var offset = (percent != 0) ? pathLength - (percent * pathLength / 100) : pathLength;
+                                circle.style.strokeDasharray = (pathLength - offset) + "," + offset;
                                 return this;
                             }
                         } else {
